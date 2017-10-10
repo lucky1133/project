@@ -1,0 +1,13 @@
+<script>
+	$('.navbar-nav').on('click', 'li a', function() {
+	  $('.navbar-collapse').collapse('hide');
+	});
+</script>
+
+
+  <script>
+		$('.navbar ul li a').on('click', function() {  
+		$('html, body').animate({scrollTop: $(this.hash).offset().top -80}, 500);
+		return true;
+		});
+	</script>
