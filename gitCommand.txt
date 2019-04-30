@@ -1,0 +1,29 @@
+git init = Make Repository
+git config --global user.email "sadsad"
+git config --global user.name "Lucy"
+git status = Check Status
+git add -A = Add all files or selected one
+git commit -m = Change anything message here
+git remote add origin = repository Link
+git push origin master = Upload file on github
+
+git log = Check log all what we did 
+git log -2 or -3 = Select how many you want to see last changes
+git log --author="Sukhwinder" = Check Author 
+git log -i --grep="readme"
+git log -i -p -G"Home" = Check Text Wise
+git log --oneline = Check One By One Line
+
+git branch = Check to see How Many branch
+git branch New = Make new branch
+git checkout New = Now You Are in New Branch
+git add -A = Add all files or selected one
+git commit -m = Change anything message here
+git checkout Old = Now you are in old branch 
+git push origin master = Upload file on github
+
+git stash save = "So You Any Changes in file"
+git stash list = See Stach Memory
+git stash drop stash{0} = Drop Memory
+git stash clear
+git stash -p = Both File check Yes Or No
