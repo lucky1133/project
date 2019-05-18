@@ -1,0 +1,124 @@
+For Logo : -
+
+$custom_logo_id = get_theme_mod( 'custom_logo' );
+$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+echo '<img class="header_logo" src="'.$image[0].'">';
+
+For Menu :
+
+// This theme uses wp_nav_menu() in two locations.  
+register_nav_menus( array(  
+'primary' => __( 'Primary Navigation', 'your_theme_name' ),  
+'secondary' => __('Secondary Navigation', 'your_theme_name')  
+) ); 
+
+
+<div class="collapse navbar-collapse" >
+	<?php wp_nav_menu(
+			array(
+				'theme_location' => 'primary',
+				'menu_class' => 'nav navbar-nav navbar-right'))
+		?>
+</div>
+
+<div class="row">
+	<?php
+		global $post;
+		$args = array( 'posts_per_page' => -1, 'post_type'  => 'services_page' );
+
+		$myposts = get_posts( $args );
+		foreach ( $myposts as $post ) : setup_postdata( $post ); 
+		 
+	?>
+	
+	<div class="col-md-4 col-sm-6">
+		<div class="serviceBox">
+			<i class="fa"><img src="<?php echo get_the_post_thumbnail_url($post->ID); ?>" alt=""/></i>
+			<h3 class="title"><?php echo the_title(); ?></h3>
+			<p class="description">
+				<?php echo the_content(); ?>
+			</p>
+
+		</div>
+	</div>
+	<?php endforeach; 
+	wp_reset_postdata();?>
+
+	
+</div>
+
+Function PHP
+
+<?php
+
+
+	function lucky_style() {
+		wp_enqueue_style( 'style', get_stylesheet_uri() );
+		wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', false ); 
+		wp_enqueue_style( 'responsive',get_template_directory_uri() . '/css/responsive.css', false ); 
+	
+		wp_enqueue_script( 'jquery_latest', get_template_directory_uri(). '/js/jquery-latest.min.js', array(), '1.1', true );
+		wp_enqueue_script( 'bootstrap', get_template_directory_uri(). '/js/bootstrap.min.js', array(), '1.1', true );
+		wp_enqueue_script( 'particles', get_template_directory_uri(). '/js/particles.min.js.js', array(), '1.1', true );
+		wp_enqueue_script( 'app', get_template_directory_uri(). '/js/app.js', array(), '1.1', true );
+	}
+
+	add_action( 'wp_enqueue_scripts', 'lucky_style' );
+
+
+	function themename_custom_logo_setup() {
+	 $defaults = array(
+	 'height'      => 100,
+	 'width'       => 400,
+	 'flex-height' => true,
+	 'flex-width'  => true,
+	 'header-text' => array( 'site-title', 'site-description' ),
+	 );
+	 add_theme_support( 'custom-logo', $defaults );
+	}
+	add_action( 'after_setup_theme', 'themename_custom_logo_setup' );
+
+	// This theme uses wp_nav_menu() in two locations.  
+	register_nav_menus( array(  
+	'primary' => __( 'Primary Navigation', 'your_theme_name' ),  
+	'secondary' => __('Secondary Navigation', 'your_theme_name')  
+	) ); 
+	
+	
+	add_theme_support('post-thumbnails');
+	add_post_type_support( 'my_product', 'thumbnail' );    
+	function create_post_type() {
+			register_post_type( 'my_product',
+				array(
+					'labels' => array(
+						'name' => __( 'Products' ),
+						'singular_name' => __( 'Product' )
+					),
+					'public' => true,
+					'has_archive' => true
+				)
+			);
+		}
+    add_action( 'init', 'create_post_type' );
+?>
+
+testimonial active class foreach in wordpress
+https://stackoverflow.com/questions/51298125/bootstrap-carousel-not-working-for-foreach-loop/51298352
+
+https://codex.wordpress.org/Function_Reference/setup_postdata
+
+https://github.com/wp-bootstrap/wp-bootstrap-navwalker
+
+https://code.tutsplus.com/tutorials/how-to-integrate-a-bootstrap-navbar-into-a-wordpress-theme--wp-33410
+
+<ul>
+<?php
+global $post;
+$args = array( 'numberposts' => 5, 'offset'=> 1, 'category' => 1 );
+$myposts = get_posts( $args );
+foreach( $myposts as $post ) :
+  setup_postdata($post); ?>
+	<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+<?php endforeach; 
+wp_reset_postdata(); ?>
+</ul>
