@@ -1,0 +1,37 @@
+.memberProfileDiv .proDiv {
+    cursor: pointer;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.memberProfileDiv .proDiv img
+{
+    width: 100%;
+}
+
+.memberProfileDiv .proDiv .profileImg
+{
+    height: 100%;
+    width: 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+/** CSS **/
+
+<div class="memberProfileDiv">
+	<div class="proDiv">
+		<div class="profileImg" style="background-image: url('https://static.wixstatic.com/media/1bf8c6_b47dc14a909a4272bf9c96dd2461fdd7~mv2_d_1920_1200_s_2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.jpg')">
+		</div>
+	</div>
+</div>
+
+
+
+$(".sideBarMenu .list-group>a.active").click(function()
+    { 
+        $(".sideBox").addClass('animated fadeInLeft'); 
+    }) 
