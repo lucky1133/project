@@ -1,0 +1,22 @@
+<ul class="nav navbar-nav navbar-right ">
+	<li><a href="index.php#aboutUs" id="scrollTo">About Us</a></li>
+	<li><a href="index.php#works" id="scrollTo">How It Works</a></li>
+	<li><a href="index.php#testimonials" id="scrollTo">Testimonials</a></li>
+	<li><a href="event.php">Events</a></li>
+	<li><a href="#" class="btn btn-info fixBtn"><img src="images/userLogin.png" alt="" /> Login/Singup</a></li>
+</ul>
+
+$(function() {
+  $('a[href*=\\#]:not([href=\\#])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html,body').animate({
+          scrollTop: target.offset().top
+        }, 500);
+        return false;
+      }
+    }
+  });
+});
