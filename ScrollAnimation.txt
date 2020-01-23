@@ -20,3 +20,94 @@ $(function() {
     }
   });
 });
+
+
+https://themeforest.net/search/finance%20bootstrap
+
+
+/****/
+Animate Scroll
+/********/
+
+.header-bottom
+{
+   position: relative;
+}
+
+.header-bottom.is-sticky {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    background-color: #ffffff;
+    -webkit-animation: 300ms ease-in-out 0s normal none 1 running fadeInDown;
+    animation: 300ms ease-in-out 0s normal none 1 running fadeInDown;
+    -webkit-box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
+    box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
+    z-index: 1000;
+}
+
+.header-bottom.is-sticky .navbar-wrapper
+{ 
+    background-color: #fff;
+    top: 0;
+    padding: 10px 0;
+}
+
+.header-bottom.is-sticky .navbar-nav.nav-font .nav-link
+{
+    color: #000;
+}
+
+.header-bottom.is-sticky .navbar-dark .navbar-brand img
+{
+  -webkit-filter: invert(100%);
+}
+
+.header-bottom.is-sticky .svg-img li a img
+{
+   -webkit-filter: invert(100%);
+}
+
+/*-- Sticky Animation --*/
+@-webkit-keyframes fadeInDown 
+{
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0); }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none; } 
+}
+
+@keyframes fadeInDown 
+{
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0); }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none; } 
+}
+
+/* //// Logo Slider /// */
+$(document).ready(function(){
+     /*--
+    Menu Sticky
+    -----------------------------------*/
+    var windows = $(window);
+    var sticky = $('.header-sticky');
+
+    windows.on('scroll', function() {
+        var scroll = windows.scrollTop();
+        if (scroll < 300) {
+            sticky.removeClass('is-sticky');
+        }else{
+            sticky.addClass('is-sticky');
+        }
+    });
+});
