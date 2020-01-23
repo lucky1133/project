@@ -118,3 +118,67 @@ const Avatarlist = ({name,work}) => {
     )
 }
 export default Avatarlist;
+
+
+/* Menu Js */
+import React from "react";
+import {Link} from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const Menu = () => {
+    return (
+        <div>
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <Link class="nav-link" to="/">Home</Link>
+                    </li>
+                    <li class="nav-item">
+                        <Link class="nav-link" to="About">About</Link>
+                    </li>
+                    <li class="nav-item">
+                        <Link class="nav-link" to="Contact">Contact</Link>
+                    </li>
+                </ul>
+            </nav>    
+        </div>
+    )
+}
+
+
+export default Menu;
+
+/* App Js */
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+import Menu from "./Menu";
+import About from "./About";
+import Contact from "./Contact";
+import {BrowserRouter,Route,Switch} from "react-router-dom";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <div className="App">
+        <Menu />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/contact" component={Contact} />
+        </Switch>
+      </div>
+    </BrowserRouter>
+  );
+}
+
+const Home = () => {
+  return (
+      <div>
+         <h1>Home</h1>    
+      </div>
+  )
+}
+
+export default App;
+
