@@ -5,8 +5,9 @@ Ajax Request :-
 4) DELETE
 
 /**/
+First Install Node
 React Insatll Command
 1) npm install -g create-react-app
 2) create-react-app reactapptuts (Any Name Of folder)
-3) cd in folder
-4) npm install
+3) cd in folder(name)
+4) npm start
