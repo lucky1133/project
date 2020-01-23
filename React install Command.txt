@@ -16,6 +16,16 @@ https://joeschmoe.io/
 
 https://react-bootstrap.github.io/getting-started/introduction
 
+/* React Router Dom */
+
+React Router
+• Collection of navigational components
+– Enables navigation among views
+– Router components, route matching components and
+navigation components
+• Uses browser-based bookmarkable URLs as an instruction
+to navigate to a client-generated view in your web app
+– Can also pass along optional parameters
 
 /***** React Install *****/
 
