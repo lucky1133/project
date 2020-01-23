@@ -1,0 +1,12 @@
+Ajax Request :-
+1) GET (Read) = Content Recieve Krna From User
+2) POST (Create) = Value Create Krna
+3) PUT (Update) = Change Krna Update Krna 
+4) DELETE
+
+/**/
+React Insatll Command
+1) npm install -g create-react-app
+2) create-react-app reactapptuts (Any Name Of folder)
+3) cd in folder
+4) npm install
