@@ -15,3 +15,94 @@ React Insatll Command
 https://joeschmoe.io/
 
 https://react-bootstrap.github.io/getting-started/introduction
+
+
+/***** React Install *****/
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import Avatar from './Avatar';
+import * as serviceWorker from './serviceWorker';
+
+ReactDOM.render(<Avatar />, document.getElementById('root'));
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
+
+/* Avatar */
+import React from "react";
+import ReactDOM from "react-dom";
+import Avatarlist from "./Avatarlist";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+class Avatar extends React.Component {
+    render()
+    {
+        const avatarlistarray = [
+            {
+                id : 1,
+                name : "Lucky",
+                work : "Web Designer"
+            },
+    
+            {
+                id : 2,
+                name : "Lucky1",
+                work : "Web Designer"
+            },
+    
+            {
+                id : 3,
+                name : "Lucky2",
+                work : "Web Designer"
+            },
+    
+            {
+                id : 4,
+                name : "Lucky3",
+                work : "Web Designer"
+            },
+    
+            {
+                id : 5,
+                name : "Lucky3 adas",
+                work : "Web Designer"
+            }
+        ]
+    
+        const carda = avatarlistarray.map( (avatarcard,i) => {
+            return  <Avatarlist id={avatarlistarray[i].id} 
+                                name={avatarlistarray[i].name} 
+                                work={avatarlistarray[i].work} />
+        })
+
+        return(
+            <div className="container">
+                <div className="row">
+                    {carda}
+                </div>
+            </div>
+        )
+    }
+}
+
+export default Avatar;
+
+/* AvatarList */
+import React from "react";
+import ReactDOM from "react-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const Avatarlist = ({name,work}) => {
+    return(
+        <div className="col-md-3">
+            <img src={`https://joeschmoe.io/api/v1/${name}`} alt="Avatar" width="200px" />
+            <h1> Hello {name} </h1>
+            <p>{work}</p>
+        </div>
+    )
+}
+export default Avatarlist;
