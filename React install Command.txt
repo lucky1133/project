@@ -182,3 +182,95 @@ const Home = () => {
 
 export default App;
 
+/* Form Field */
+import React from "react";
+import ReactDOM from "react-dom";
+
+class Form extends React.Component
+{
+    constructor(props){
+        super();
+        this.state = {
+            fullname : "Enter Name",
+            email : "Enter Email",
+            number : "Enter Number",
+            message : "Enter Messages"
+        }
+    }
+
+    // If u Don't Want To Repeat This Put the property Name for all field NAME wILL be same all field (Let's go For easy)
+    // handlename = (event) => {
+    //     this.setState({
+    //         fullname : event.target.value
+    //     })
+    // }
+
+    // handleemail = (event) => {
+    //     this.setState({
+    //         email : event.target.value
+    //     })
+    // }
+
+    // handlenumber = (event) => {
+    //     this.setState({
+    //         number : event.target.value
+    //     })
+    // }
+
+    // handlemessage = (event) => {
+    //     this.setState({
+    //         message : event.target.value
+    //     })
+    // }
+
+    handlechange = (event) => {
+        this.setState({
+            [event.target.name] : [event.target.value]
+        })
+    }
+
+    handlesubmit = (event) => {
+        // alert(`My Name is : ${this.state.fullname}. 
+        //        My Email ID is : ${this.state.email}. 
+        //        My Mobile No is : ${this.state.number}.
+        //        My Message ID is : ${this.state.message}. `);
+        
+        alert(JSON.stringify(this.state));
+        event.preventDefault();
+    }
+
+    render()
+    {
+        return(
+            <div className="col-md-6 offset-md-3">
+                <div className="p-5 text-left new_form">
+                    <form onSubmit={this.handlesubmit}>
+                        <div className="form-group">
+                            <label for="email">Full Name:</label>
+                            <input type="text" className="form-control" name="fullname" onChange={this.handlechange} value={this.state.fullname} id="email" />
+                        </div>
+
+                        <div className="form-group">
+                            <label for="pwd">Email:</label>
+                            <input type="text" className="form-control" name="email" onChange={this.handlechange} value={this.state.email} id="pwd" />
+                        </div>
+
+                        <div className="form-group">
+                            <label for="pwd">Mobile No:</label>
+                            <input type="text" className="form-control" name="number" onChange={this.handlechange} value={this.state.number} id="pwd" />
+                        </div>
+
+                        <div className="form-group">
+                            <label for="comment">Message:</label>
+                            <textarea className="form-control" name="message" onChange={this.handlechange} value={this.state.message} rows="5" id="comment"></textarea>
+                        </div>
+
+                        <input type="submit" className="btn btn-primary" value="Submit" />
+                    </form>
+                </div>
+            </div>
+        )
+    }
+}
+
+export default Form;
