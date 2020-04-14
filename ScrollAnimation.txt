@@ -136,3 +136,18 @@ $(document).ready(function(){
         }
     });
 });
+
+/* URL BASED LINKS ACTIVE CLASS */
+$(document).ready(function() { 
+	var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
+		$('.navbar-nav .nav-link').each(function() {
+		if (this.href === path) 
+		{
+			$(this).addClass('active');
+		}
+		else
+		{
+			$(this).removeClass('active');
+		}
+	});
+}); 
