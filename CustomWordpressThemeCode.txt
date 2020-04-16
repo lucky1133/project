@@ -1,5 +1,9 @@
 Custom Wordpress Theme
 
+Any Code Learn = https://wordpress.stackexchange.com/questions/364110/add-dynamic-attribute-for-category-to-accordion
+				 https://codex.wordpress.org/The_Loop
+
+
 General files:-
 1) style.css
 2) index.php
@@ -208,5 +212,47 @@ Link:- https://denverdata.com/blog/how-use-wpquery-display-custom-post-type
     <?php
     endwhile;
 ?> 
+
+//////////////////////////***************************///////////////////
+
+5) If u want To custom Project Add
+
+<?php
+	$args = array(  
+		'post_type' => 'custom_projects',
+		'post_status' => 'publish',
+		'posts_per_page' => 8, 
+		'order' => 'ASC', 
+	);
+
+	$loop = new WP_Query( $args ); 
+		
+	while ( $loop->have_posts() ) : $loop->the_post(); 
+	?>
+		<div class="col-md-4">
+			<h1><a href="<?php the_permalink(); ?>"> <?php the_title(); ?></a></h1>
+			<p><?php the_content(); ?></p>
+			<?php the_author(); ?>
+			<?php the_time( 'g:i a' ); ?>
+		</div>
+	<?php
+	endwhile;
+?>
+	
+function custom_field_project() {
+register_post_type('custom_projects',
+	array(
+		'labels'      => array(
+			'name'          => __('Our Project'),
+			'singular_name' => __('Custom Project'),
+		),
+			'public'      => true,
+			'has_archive' => true,
+			'show_in_nav_menus' => false,
+			'supports' => array('title','editor','author','comments','revisions','custom-fields')
+		 )
+	);
+}
+add_action('init', 'custom_field_project');
 
 //////////////////////////***************************///////////////////
