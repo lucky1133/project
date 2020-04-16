@@ -1,0 +1,212 @@
+Custom Wordpress Theme
+
+General files:-
+1) style.css
+2) index.php
+3) header.php
+4) footer.php
+5) sidebar.php
+6) functions.php
+7) page.php
+8) screenshot
+
+style.css
+//Put this code in Style.css
+/*
+Theme Name: Custom Theme
+Theme URI: https://google.com
+Author: Lucky
+Author URI: https://wordpress.org/
+Description: This is my custom Theme.
+Version: 1.0
+*/
+
+
+1) get_bloginfo(); if u want change Title or description
+
+Link :- https://developer.wordpress.org/reference/functions/get_bloginfo/
+Title :- <title><?php echo get_bloginfo("name"); ?> | <?php echo get_bloginfo("description"); ?></title>
+
+/*******************/////////////////////******************////////////////////
+
+2) get_template_directory_uri(); if u want Link css or Javascript
+
+<?php wp_head(); ?>
+<?php wp_footer(); ?>
+
+Link :- https://developer.wordpress.org/reference/functions/wp_enqueue_script/
+/**
+ * Link CSS & Javascript FILE 
+ */
+function wpdocs_theme_name_scripts() {
+    wp_enqueue_style( 'style', get_stylesheet_uri());
+	wp_enqueue_style( 'style_css', get_template_directory_uri() . '/css/style.css');
+	wp_enqueue_style( 'color_css', get_template_directory_uri() . '/css/color/blue.css');
+
+	wp_enqueue_script( 'jquery_file', get_template_directory_uri() . "/js/jquery-1.11.3.min.js", array(), '1.0.0', true );
+}
+add_action( 'wp_enqueue_scripts', 'wpdocs_theme_name_scripts' );
+
+////////////////////////////******************************//////////////////////////
+
+1) If u Want To Make Custom Logo (img or Background) see Code :- 
+
+<?php 
+
+	// This For Background or find Custom Logo 
+	$img = get_bloginfo('template_url').'/images/logo/Logo-Header.png';
+
+	$custom_logo_id = get_theme_mod( 'custom_logo' );
+	$logo = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+	if ( has_custom_logo() ) {
+			$img = esc_url($logo[0]);
+	}
+	?>	
+
+	<style>
+	.navbar-logo {
+		padding: 15px 15px;
+		font-size: 18px;
+		line-height: 20px;
+		background: url(<?php echo $img; ?>) no-repeat left;
+		width: 330px;
+		height: 90px;
+		margin-left: 15px;
+		display: inline-block;
+	}					
+	</style>
+	
+	// This For IMG Tag
+	<a class="navbar-logo" href="<?php echo get_option("siteurl"); ?>">
+	<!-- <?php 
+		$custom_logo_id = get_theme_mod( 'custom_logo' );
+		$logo = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+		if ( has_custom_logo() ) {
+				echo '<img src="' . esc_url($logo[0]) . '" alt="' . get_bloginfo( 'name' ) . '">';
+		} else {
+				echo '<h1>'. get_bloginfo( 'name' ) .'</h1>';
+		}
+	?>	 -->	
+	</a>
+	
+	//Pur This Code Functions.php
+	function themename_custom_logo_setup() {
+		 $defaults = array(
+		 'height'      => 100,
+		 'width'       => 400,
+		 'flex-height' => true,
+		 'flex-width'  => true,
+		 'header-text' => array( 'site-title', 'site-description' ),
+	 );
+	 add_theme_support( 'custom-logo', $defaults );
+
+////////////////////////////***************************//////////////////////////////
+
+2) Custom Page Code
+
+<?php 
+	/* Template Name: About Us */ // Give Name Page u Want
+
+	get_header(); 
+?>
+
+<?php 
+if ( have_posts() ) {
+	while ( have_posts() ) {
+		the_post(); 
+	?>
+	// Show your Code
+	<?php
+	}
+}
+?>
+
+<?php get_footer(); ?>
+
+/************** Page Php *******************/
+<?php 
+	get_header(); 
+?>
+
+<?php 
+if ( have_posts() ) {
+	while ( have_posts() ) {
+		the_post(); 
+	?>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1> <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a> </h1>
+				<p><?php the_content(); ?></p>
+			</div>
+		</div>
+	</div>
+
+	<?php
+	}
+}
+?>
+
+<?php get_footer(); ?>
+
+/////////////////////****************************///////////////////////////
+
+3) If u want Custom Menu Bar
+
+<div class="collapse pull-right navbar-collapse">
+	<div id="cssmenu" class="Menu-Header top-menu">
+		<?php
+			wp_nav_menu(
+			  array(
+				'primary-menu' => 'Primary Menu',
+				'container' => ''
+			  )
+			);
+		?>
+	</div>
+</div>
+
+//Put This Code in Functions.php
+function register_my_menus() {
+  register_nav_menus(
+	array(
+	  'primary-menu' => __( 'Primary Menu' ),
+	  'footer-menu' => __( 'Footer Menu' )
+	 )
+   );
+ }
+ 
+
+ add_action( 'init', 'register_my_menus' );
+ 
+/////////////////////***************************//////////////////
+
+4) if u want custom post type area (WP_Query Custom Post Type Examples)
+
+Link:- https://denverdata.com/blog/how-use-wpquery-display-custom-post-type
+
+<?php
+ /**
+ * Setup query to show the ‘services’ post type with ‘8’ posts.
+ * Output the title with an excerpt.
+ */
+    $args = array(  
+        'post_type' => 'post',
+        'post_status' => 'publish',
+        'posts_per_page' => 8, 
+    );
+
+    $loop = new WP_Query( $args ); 
+        
+    while ( $loop->have_posts() ) : $loop->the_post(); 
+    ?>
+
+    	<h1><a href="<?php the_permalink(); ?>"> <?php the_title(); ?></a></h1>
+    	<p><?php the_content(); ?></p>
+
+    <?php
+    endwhile;
+?> 
+
+//////////////////////////***************************///////////////////
