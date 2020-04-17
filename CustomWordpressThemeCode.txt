@@ -196,7 +196,7 @@ Link:- https://denverdata.com/blog/how-use-wpquery-display-custom-post-type
  * Output the title with an excerpt.
  */
     $args = array(  
-        'post_type' => 'post',
+        'post_type' => 'post', // Just Change if u are usign Normal Post
         'post_status' => 'publish',
         'posts_per_page' => 8, 
     );
@@ -263,6 +263,7 @@ add_action('init', 'custom_field_project');
   <?php dynamic_sidebar( 'sidebar-1' ); ?>
 </div> -->
 
+// If u don't want to HTML use this
 <?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
 	<div class="sidebar new-sidebar">
 		<?php dynamic_sidebar( 'sidebar-1' ); ?>
@@ -296,3 +297,12 @@ function my_widget_init() {
 add_action( 'widgets_init', 'my_widget_init' );
 	
 //////////////////////////***************************///////////////////
+
+Predefind Functions : -
+1) get_calendar()
+2) wp_get_archives("type=monthly");
+3) get_links_list();
+4) wp_register();
+5) wp_loginout();
+6) wp_meta();
+
