@@ -10,7 +10,753 @@ General files:-
 2) index.php
 3) header.php
 4) footer.php
+5) sidebar.phpCustom Wordpress Theme
+
+Any Code Learn = https://wordpress.stackexchange.com/questions/364110/add-dynamic-attribute-for-category-to-accordion
+				 https://codex.wordpress.org/The_Loop
+
+https://secondlinethemes.com/display-custom-post-types-wordpress/ (Show Post)
+
+General files:-
+1) style.css
+2) index.php
+3) header.php
+4) footer.php
 5) sidebar.php
+6) functions.php
+7) page.php
+	"page-{page-id}.php", 
+	"page-{page-slug}.php",
+	 Custom page template
+8) screenshot
+9) front-page.php
+10) home.php
+11) single.php
+12) content.php(PostFormat)
+	Repeat This Code Every Page
+    <?php get_header(); ?>
+		<div class="container">
+			<div class="row">
+				<?php
+				if(have_posts()) :
+					while(have_posts()) :
+						the_post();
+						get_template_part( 'template-parts/content/content', get_post_format() );
+					endwhile;
+				endif;
+				?>
+			</div>
+		</div>
+	<?php get_footer(); ?>
+
+style.css
+//Put this code in Style.css
+/*
+Theme Name: Custom Theme
+Theme URI: https://google.com
+Author: Lucky
+Author URI: https://wordpress.org/
+Description: This is my custom Theme.
+Version: 1.0
+*/
+
+
+1) get_bloginfo(); if u want change Title or description
+
+Link :- https://developer.wordpress.org/reference/functions/get_bloginfo/
+Title :- <title><?php echo get_bloginfo("name"); ?> | <?php echo get_bloginfo("description"); ?></title>
+
+/*******************/////////////////////******************////////////////////
+
+2) get_template_directory_uri(); if u want Link css or Javascript
+
+<?php wp_head(); ?>
+<?php wp_footer(); ?>
+
+Link :- https://developer.wordpress.org/reference/functions/wp_enqueue_script/
+/**
+ * Link CSS & Javascript FILE 
+ */
+function wpdocs_theme_name_scripts() {
+    wp_enqueue_style( 'style', get_stylesheet_uri());
+	wp_enqueue_style( 'style_css', get_template_directory_uri() . '/css/style.css');
+	wp_enqueue_style( 'color_css', get_template_directory_uri() . '/css/color/blue.css');
+
+	wp_enqueue_script( 'jquery_file', get_template_directory_uri() . "/js/jquery-1.11.3.min.js", array(), '1.0.0', true );
+}
+add_action( 'wp_enqueue_scripts', 'wpdocs_theme_name_scripts' );
+
+////////////////////////////******************************//////////////////////////
+
+1) If u Want To Make Custom Logo (img or Background) see Code :- 
+
+<?php 
+
+	// This For Background or find Custom Logo 
+	$img = get_bloginfo('template_url').'/images/logo/Logo-Header.png';
+
+	$custom_logo_id = get_theme_mod( 'custom_logo' );
+	$logo = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+	if ( has_custom_logo() ) {
+			$img = esc_url($logo[0]);
+	}
+	?>	
+
+	<style>
+	.navbar-logo {
+		padding: 15px 15px;
+		font-size: 18px;
+		line-height: 20px;
+		background: url(<?php echo $img; ?>) no-repeat left;
+		width: 330px;
+		height: 90px;
+		margin-left: 15px;
+		display: inline-block;
+	}					
+	</style>
+	
+	// This For IMG Tag
+	<a class="navbar-logo" href="<?php echo get_option("siteurl"); ?>">
+	<!-- <?php 
+		$custom_logo_id = get_theme_mod( 'custom_logo' );
+		$logo = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+		if ( has_custom_logo() ) {
+				echo '<img src="' . esc_url($logo[0]) . '" alt="' . get_bloginfo( 'name' ) . '">';
+		} else {
+				echo '<h1>'. get_bloginfo( 'name' ) .'</h1>';
+		}
+	?>	 -->	
+	</a>
+	
+	//Pur This Code Functions.php
+	function themename_custom_logo_setup() {
+		 $defaults = array(
+		 'height'      => 100,
+		 'width'       => 400,
+		 'flex-height' => true,
+		 'flex-width'  => true,
+		 'header-text' => array( 'site-title', 'site-description' ),
+	 );
+	 add_theme_support( 'custom-logo', $defaults );
+
+////////////////////////////***************************//////////////////////////////
+
+2) Custom Page Code
+
+<?php 
+	/* Template Name: About Us */ // Give Name Page u Want
+
+	get_header(); 
+?>
+
+<?php 
+if ( have_posts() ) {
+	while ( have_posts() ) {
+		the_post(); 
+	?>
+	// Show your Code
+	<?php
+	}
+}
+?>
+
+<?php get_footer(); ?>
+
+/************** Page Php *******************/
+<?php 
+	get_header(); 
+?>
+
+<?php 
+if ( have_posts() ) {
+	while ( have_posts() ) {
+		the_post(); 
+	?>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1> <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a> </h1>
+				<p><?php the_content(); ?></p>
+			</div>
+		</div>
+	</div>
+
+	<?php
+	}
+}
+?>
+
+<?php get_footer(); ?>
+
+/////////////////////****************************///////////////////////////
+
+3) If u want Custom Menu Bar
+
+<div class="collapse pull-right navbar-collapse">
+	<div id="cssmenu" class="Menu-Header top-menu">
+		<?php
+			wp_nav_menu(
+			  array(
+				'primary-menu' => 'Primary Menu',
+				'container' => ''
+			  )
+			);
+		?>
+	</div>
+</div>
+
+//Put This Code in Functions.php
+function register_my_menus() {
+  register_nav_menus(
+	array(
+	  'primary-menu' => __( 'Primary Menu' ),
+	  'footer-menu' => __( 'Footer Menu' )
+	 )
+   );
+ }
+ 
+
+ add_action( 'init', 'register_my_menus' );
+ 
+/////////////////////***************************//////////////////
+
+4) if u want custom post type area (WP_Query Custom Post Type Examples)
+
+Link:- https://denverdata.com/blog/how-use-wpquery-display-custom-post-type
+
+<?php
+ /**
+ * Setup query to show the ‘services’ post type with ‘8’ posts.
+ * Output the title with an excerpt.
+ */
+    $args = array(  
+        'post_type' => 'post', // Just Change if u are usign Normal Post
+        'post_status' => 'publish',
+        'posts_per_page' => 8, 
+    );
+
+    $loop = new WP_Query( $args ); 
+        
+    while ( $loop->have_posts() ) : $loop->the_post(); 
+    ?>
+
+    	<h1><a href="<?php the_permalink(); ?>"> <?php the_title(); ?></a></h1>
+    	<p><?php the_content(); ?></p>
+
+    <?php
+    endwhile;
+?> 
+
+//////////////////////////***************************///////////////////
+
+5) If u want To custom Project Add
+
+<?php
+	$args = array(  
+		'post_type' => 'custom_projects',
+		'post_status' => 'publish',
+		'posts_per_page' => 8, 
+		'order' => 'ASC', 
+	);
+
+	$loop = new WP_Query( $args ); 
+		
+	while ( $loop->have_posts() ) : $loop->the_post(); 
+	?>
+		<div class="col-md-4">
+			<h1><a href="<?php the_permalink(); ?>"> <?php the_title(); ?></a></h1>
+			<p><?php the_content(); ?></p>
+			<?php the_author(); ?>
+			<?php the_time( 'g:i a' ); ?>
+		</div>
+	<?php
+	endwhile;
+?>
+	
+function custom_field_project() {
+register_post_type('custom_projects',
+	array(
+		'labels'      => array(
+			'name'          => __('Our Project'),
+			'singular_name' => __('Custom Project'),
+		),
+			'public'      => true,
+			'has_archive' => true,
+			'show_in_nav_menus' => false,
+			'supports' => array('title','editor','author','comments','revisions','custom-fields')
+		 )
+	);
+}
+add_action('init', 'custom_field_project');
+
+//////////////////////////***************************///////////////////
+
+6) Dynamic Sidebar
+
+<!-- <div class="sidebar new-sidebar">
+  <?php dynamic_sidebar( 'sidebar-1' ); ?>
+</div> -->
+
+// If u don't want to HTML use this
+<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
+	<div class="sidebar new-sidebar">
+		<?php dynamic_sidebar( 'sidebar-1' ); ?>
+	</div>
+<?php endif; ?>
+ 
+ 
+function my_widget_init() {
+	register_sidebar(array(
+	   'name' => 'Sidebar Widget 1',
+	   'id' => 'sidebar-1',
+	   'description' => 'Sidebar Description',
+	   'before_widget' => '<div class="customsider1">',
+	   'after_widget' => '</div>',
+	   'before_title' => '<h3>',
+	   'after_title' => '</h3>',
+	 )
+	);
+
+	register_sidebar(array(
+	   'name' => 'Sidebar Widget 2',
+	   'id' => 'sidebar-2',
+	   'description' => 'Sidebar Description',
+	   'before_widget' => '<div class="customsider2">',
+	   'after_widget' => '</div>',
+	   'before_title' => '<h3>',
+	   'after_title' => '</h3>',
+	 )
+	);
+}
+add_action( 'widgets_init', 'my_widget_init' );
+	
+//////////////////////////***************************///////////////////
+
+Predefind Functions : -
+1) get_calendar()
+2) wp_get_archives("type=monthly");
+3) get_links_list();
+4) wp_register();
+5) wp_loginout();
+6) wp_meta();
+
+
+/*************************//////////////////////////*****************
+
+6) Featured Image
+
+https://demo.hasthemes.com/korki-v5/korki-v5/index.html
+
+function owt_theme_supports(){
+
+add_theme_support("post-thumbnails");
+//images size
+add_image_size("small-thumbnail",120,90,true); // 120 wide 90 tall
+add_image_size("banner-image",700,350,true);
+
+// post formats
+add_theme_support("post-formats",array("aside","gallery","link"));
+}
+
+// functions used to show thumbnail image:
+the_post_thumbnail('small-thumbnail');
+
+add_action("after_setup_theme","owt_theme_supports");
+
+Post Formats->
+https://wordpress.org/support/article/post-formats/
+
+Formating Date & Time
+
+Link :- https://wordpress.org/support/article/formatting-date-and-time/
+Function Use This = <?php the_time() ?>
+Format String Examples #Format String Examples
+Here are some examples of date format with the result output.
+
+F j, Y g:i a – November 6, 2010 12:50 am
+F j, Y – November 6, 2010
+F, Y – November, 2010
+g:i a – 12:50 am
+g:i:s a – 12:50:48 am
+l, F jS, Y – Saturday, November 6th, 2010
+M j, Y @ G:i – Nov 6, 2010 @ 0:50
+Y/m/d \a\t g:i A – 2010/11/06 at 12:50 AM
+Y/m/d \a\t g:ia – 2010/11/06 at 12:50am
+Y/m/d g:i:s A – 2010/11/06 12:50:48 AM
+Y/m/d – 2010/11/06
+
+Author Specific Posts
+
+<p> <?php the_time('F j, Y g:i a'); ?> | <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php the_author(); ?></a> </p>
+Link :- https://developer.wordpress.org/reference/functions/get_author_posts_url/
+
+Category :- 
+
+<?php   
+	$categories = get_the_category();
+	$seprator = ", ";
+	$catoptions = "";
+	foreach ( $categories as $category) {
+		$catoptions .= "<a href='".get_category_link($category->term_id)."'/>".$category->cat_name."</a>".$seprator;
+	}
+	echo trim($catoptions, $seprator);
+?>
+
+No Image Preview Code :-
+
+Link :- https://developer.wordpress.org/reference/functions/has_post_thumbnail/
+
+<?php
+	// Must be inside a loop.
+	
+	if ( has_post_thumbnail() ) {
+		//the_post_thumbnail_url('large');
+		the_post_thumbnail("single-post-thumbnail");
+	}
+	else {
+		echo '<img src="'.get_template_directory_uri(). '/images/category4.png" />';
+	}
+?>
+
+//////////////////////////***************************///////////////////
+
+7) Page New CREATE :- 
+
+  "page.php"
+  "page-{page-id}.php", 
+  "page-{page-slug}.php",
+  custom page template
+
+<?php /* Template Name: CustomPageT1 */ ?>
+ 
+<?php get_header(); ?>
+ 
+<div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+        <?php
+        // Start the loop.
+        while ( have_posts() ) : the_post();
+ 
+            // Include the page content template.
+            get_template_part( 'template-parts/content', 'page' );
+ 
+            // If comments are open or we have at least one comment, load up the comment template.
+            if ( comments_open() || get_comments_number() ) {
+                comments_template();
+            }
+ 
+            // End of the loop.
+        endwhile;
+        ?>
+ 
+    </main><!-- .site-main -->
+ 
+    <?php get_sidebar( 'content-bottom' ); ?>
+ 
+</div><!-- .content-area -->
+
+<?php get_footer(); ?>
+
+//////////////////////////***************************///////////////////
+
+
+8) Navigation Hook
+
+// Hooking up our function to theme setup
+add_action( 'init', 'create_posttype' );
+
+function register_my_menus() {
+	register_nav_menus(
+	  array(
+		'header-menu' => __( 'Header Menu' ),
+		'footer-menu' => __( 'footer Menu' )
+	   )
+	 );
+   }
+add_action( 'init', 'register_my_menus' );
+
+// If u want to add Li Class
+add_filter("nav_menu_css_class","owt_each_li_class",10,4);     
+
+function owt_each_li_class($classes,$item,$args,$dept)
+{
+	$classes[] = "owt_class";
+	return $classes;
+}
+
+// If u want to add in Anchor Class
+add_filter("nav_menu_link_attributes","owt_each_anchor_attr",10,4);     
+
+function owt_each_anchor_attr($attr)
+{
+	$attr['class'] = "owt_class1";
+	return $attr;
+}
+
+// check Menu 
+   wp_nav_menu
+=======================
+wp_nav_menu(array(
+	"theme_location" = "header",
+	"menu_class"="owt_class",
+	"menu_id"= "owt_id",
+	"container_class"="owt_parent_class",
+	"container_id"="owt_parent_id",
+	"before"="before anchor tag",
+	"link_before"="anchor before text"
+));   
+	
+if(has_nav_menu("header-menu"))
+{
+	wp_nav_menu(
+		array(
+		'theme_location' => 'header-menu',
+		'menu_class' => 'our-m',
+		)
+	);
+}  
+
+// Custom Menu Setting
+ <!-- <ul class="list-unstyled nav1 cl-effect-10">
+	<li><a  data-hover="Home" class="active"><span>Home</span></a></li>
+	<li><a data-hover="About"  href="about.html"><span>About</span></a></li>
+	<li><a data-hover="Rooms"  href="rooms.html"><span>Rooms</span></a></li>
+	<li><a data-hover="Gallery"  href="gallery.html"><span>Gallery</span></a></li>
+	<li><a data-hover="Dinning" href="dinning.html"><span>Dinning</span></a></li>
+	<li><a data-hover="News" href="news.html"><span>News</span></a></li>
+	<li><a data-hover="Contact Us" href="contact.html"><span>contact Us</span></a></li>
+</ul> -->
+<?php 
+	// if(has_nav_menu("header-menu"))
+	// {
+	//     wp_nav_menu(
+	//         array(
+	//           'theme_location' => 'header-menu',
+	//           'menu_class' => 'our-m',
+	//         )
+	//     );
+	// }  
+	$locationsdetails = get_nav_menu_locations();
+	$menuID = $locationsdetails['header-menu'];
+
+	$primarymenuitems =  wp_get_nav_menu_items($menuID);
+?>
+
+<ul class="list-unstyled nav1 cl-effect-10">
+	<?php
+	foreach($primarymenuitems as $key=>$value)
+	{?>
+
+	<li>
+		<a data-hover="<?php echo $value->title; ?>" href="<?php echo $value->url; ?>"> 
+		<span><?php echo $value->title; ?> </span></a>
+	</li>
+
+	<?php } ?>
+</ul>
+
+//////////////////////////***************************///////////////////
+
+9) Archive Page
+
+<?php get_header(); ?>
+<?php
+    if(is_author())
+    {
+        echo "Author Archived";
+    }
+    elseif(is_category())
+    {
+        echo "Category Archived";
+    }
+    elseif(is_day())
+    {
+        echo "Day Archived";
+    }
+    elseif(is_month())
+    {
+        echo "Month Archived";
+    }
+    elseif(is_year())
+    {
+        echo "Year Archived";
+    }
+?>
+
+<div class="container">
+    <div class="row">
+        <?php
+        if(have_posts()) :
+            while(have_posts()) :
+                the_post();
+                get_template_part( 'template-parts/content/content', get_post_format() );
+            endwhile;
+        endif;
+        ?>
+    </div>
+</div>
+
+<?php get_footer(); ?>
+
+//////////////////////////***************************///////////////////
+
+
+10) Search Page
+1) Searchform.php
+<form method="get" class="ssss" action="<?php echo home_url('/') ?>">
+    <label for="SearchFor">Search For</label>
+    <input type="text" name="s" placeholder="Enter Search Term here" />
+    <button type="submit">Search Now</button>
+</form>
+
+2) Search.php
+<?php get_header(); ?>
+<h1>Search page</h1>
+<p> Serch For:<?php echo get_search_query(); ?> </p>
+<div class="container">
+    <div class="row">
+       <div class="col-md-10">
+       <?php
+        if(have_posts()) :
+            while(have_posts()) :
+                the_post();
+                get_template_part( 'template-parts/content/content', get_post_format() );
+            endwhile;
+        else:
+            echo "Nothing Found";
+        endif;
+        ?>
+       </div>
+       <div class="col-md-2">
+         <?php get_search_form(); ?>
+       </div>
+    </div>
+</div>
+
+<?php get_footer(); ?>
+
+//////////////////////////***************************///////////////////
+
+11) Register Sidebar
+
+Link:- https://developer.wordpress.org/reference/functions/register_sidebar/
+/**
+ * Add a sidebar.
+ */
+function wpdocs_theme_slug_widgets_init() {
+    register_sidebar( array(
+        'name'          => __( 'Main Sidebar' ),
+        'id'            => 'sidebar-1',
+        'description'   => __( 'Widgets in this area will be shown on all posts and pages.', 'textdomain' ),
+        'before_widget' => '<li id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</li>',
+        'before_title'  => '<h2 class="widgettitle">',
+        'after_title'   => '</h2>',
+    ) );
+}
+add_action( 'widgets_init', 'wpdocs_theme_slug_widgets_init' );
+
+//Sidebar.php Page
+<?php if ( is_active_sidebar( 'right-sidebar' ) ) { ?>
+    <ul id="sidebar">
+        <?php dynamic_sidebar('right-sidebar'); ?>
+    </ul>
+<?php } ?>
+
+//////////////////////////***************************///////////////////
+
+12) Cutomization Panel
+
+Link:- https://codex.wordpress.org/Plugin_API/Action_Reference/customize_register
+
+function themename_customize_register($wp_customize)
+{
+	$wp_customize->add_section('owt_main_Section', array(
+		'title'    => "Online Lucky",
+		'description' => '',
+		'priority' => 120,
+	));
+
+	//  =============================
+	//  = Footer Text                =
+	//  =============================
+	$wp_customize->add_setting('owt_text_Setting', array(
+		'default'        => 'Online Web Tutor',
+		'capability'     => 'edit_theme_options',
+		'type'           => 'option',
+
+	));
+
+	$wp_customize->add_control('owt_first_control', array(
+		'label'      => "Footer Text",
+		'section'    => 'owt_main_Section',
+		'settings'   => 'owt_text_Setting',
+	));
+
+	 //  =============================
+	//  = Footer Link                =
+	//  =============================
+	$wp_customize->add_setting('owt_link_setting', array(
+		'default'        => 'Online Web Tutor',
+		'capability'     => 'edit_theme_options',
+		'type'           => 'option',
+
+	));
+
+	$wp_customize->add_control('owt_link_control', array(
+		'label'      => "Footer Link",
+		'section'    => 'owt_main_Section',
+		'settings'   => 'owt_link_setting',
+	));
+
+	//  =============================
+	//  = Page Dropdown             =
+	//  =============================
+	$wp_customize->add_setting('owt_settong_text_link', array(
+		'capability'     => 'edit_theme_options',
+		'type'           => 'option',
+
+	));
+
+	$wp_customize->add_control('owt_footer_pages_control', array(
+		'label'      => "Footer Link",
+		'section'    => 'owt_main_Section',
+		'type'    => 'dropdown-pages',
+		'settings'   => 'owt_settong_text_link',
+	));
+}
+add_action('customize_register', 'themename_customize_register');
+	
+<div class="copyright">
+	&copy; <?php echo get_option('owt_text_Setting'); ?> 
+	<a href="<?php echo get_option("owt_footer_pages_control"); ?>"><?php echo get_option('owt_link_Setting'); ?></a>.
+</div>
+
+//////////////////////////***************************///////////////////
+
+11) Plugins
+
+1) WpFrom
+2) Contact From 7
+3) Elementor
+4) Visiual Composer
+5) Paid Membership Pro Only Paid Member Access
+6) Elementor :-
+   1) Envato Elements (Some Free Themes) http://prntscr.com/sb9fth
+   2) If you want to Custom Header or etc :- Elements kit Elementor addons (Header & Footer Builder, Mega Menu Builder, Layout Library) :  http://prntscr.com/sbaxac
+   3) Unlimited Elements for Elementor :- http://prntscr.com/sbbc0a
+   
+/// Themes
+1) Astra
+2) Ocean WP
+
+
+
+
+
+
+
 6) functions.php
 7) page.php
 	"page-{page-id}.php", 
