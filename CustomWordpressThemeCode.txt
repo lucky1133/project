@@ -739,7 +739,19 @@ add_action('customize_register', 'themename_customize_register');
 1) Astra
 2) Ocean WP
 
+//Fonts
+https://www.dafont.com/
+https://www.transparenttextures.com/
+https://transfonter.org/
+https://android-material-icon-generator.bitdroid.de/
 
+Custom Fonts in Wordpress:- http://prntscr.com/sd6fjw
+
+//Shapes
+https://www.blobmaker.app/
+https://bennettfeely.com/clippy/
+https://coolbackgrounds.io/
+https://getwaves.io/
 
 
 
