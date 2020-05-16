@@ -734,7 +734,12 @@ add_action('customize_register', 'themename_customize_register');
    1) Envato Elements (Some Free Themes) http://prntscr.com/sb9fth
    2) If you want to Custom Header or etc :- Elements kit Elementor addons (Header & Footer Builder, Mega Menu Builder, Layout Library) :  http://prntscr.com/sbaxac
    3) Unlimited Elements for Elementor :- http://prntscr.com/sbbc0a
+
    
+Custom Fonts in Wordpress:- http://prntscr.com/sd6fjw
+Switch Post Types in WordPress :- http://prntscr.com/sd6nfo 
+Fake Press Dummy Data :- http://prntscr.com/sd6oom
+
 /// Themes
 1) Astra
 2) Ocean WP
@@ -745,14 +750,78 @@ https://www.transparenttextures.com/
 https://transfonter.org/
 https://android-material-icon-generator.bitdroid.de/
 
-Custom Fonts in Wordpress:- http://prntscr.com/sd6fjw
 
 //Shapes
 https://www.blobmaker.app/
 https://bennettfeely.com/clippy/
 https://coolbackgrounds.io/
 https://getwaves.io/
+https://www.blobmaker.app/
+
+// Media Query
+https://css-tricks.com/snippets/css/media-queries-for-standard-devices/
+
+
+CSS GRID:-
+https://www.joomlashack.com/blog/tutorials/css-grid-12-the-minimax-function/
+https://css-tricks.com/look-ma-no-media-queries-responsive-layouts-using-css-grid/
+
+
+//Svg Editior
+https://editor.method.ac/
+https://simplecss.eu/
 
 
 
+<?php
+	if(is_page("about-us"))
+	{
+		echo do_shortcode('[smartslider3 slider=2]');
+	}
+?>
 
+Redirect Non-WWW to WWW URL in WordPress
+https://www.ostraining.com/blog/wordpress/non-www/
+
+How to Add a New Users To Your WordPress (User Role)
+http://prntscr.com/sgkh1y
+	
+Responsive Div:- https://codepen.io/Weldebob/pen/WjMLav
+
+//////////////////////////**********      Sass Install    *****************///////////////////
+1) Node :- create folder then npm init
+   Command :- npm install -g node-sass --save-dev
+   Package Json:-
+   "scripts": {
+      "compile-sass": "node-sass sass/main.scss css/style.css -w"
+   },
+   
+   
+/* Jquery */
+
+$(document).ready(function(){
+  $(".dropdown").hover(            
+	  function() {
+		  $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
+		  $(this).toggleClass('open');        
+	  },
+	  function() {
+		  $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
+		  $(this).toggleClass('open');       
+	  }
+  );
+});
+
+$(document).click(function(e)
+{
+  e.stopPropagation();
+  $(".dropdown-menu").stop().slideUp(300);
+})
+		  
+   
+   
+   
+   
+   
+   
+   
