@@ -124,8 +124,10 @@ add_action( 'wp_enqueue_scripts', 'wpdocs_theme_name_scripts' );
 		 'flex-height' => true,
 		 'flex-width'  => true,
 		 'header-text' => array( 'site-title', 'site-description' ),
-	 );
-	 add_theme_support( 'custom-logo', $defaults );
+		);
+		 add_theme_support( 'custom-logo', $defaults );
+	}
+	add_action( 'after_setup_theme', 'themename_custom_logo_setup' );
 
 ////////////////////////////***************************//////////////////////////////
 
@@ -818,10 +820,15 @@ $(document).click(function(e)
   $(".dropdown-menu").stop().slideUp(300);
 })
 		  
+// Marqueee
+http://aamirafridi.com/jquery/jquery-marquee-plugin
+https://codepen.io/aamirafridi/pen/ifJqE
    
-   
-   
-   
-   
+// If accordion Not Collapsing   
+var active = true;
+$('#accordion').on('show.bs.collapse', function () {
+ if (active) $('#accordion .show').collapse('hide');
+});  
+	  
    
    
