@@ -1,5 +1,8 @@
 Custom Wordpress Theme
 
+Theme Development
+https://developer.wordpress.org/themes/basics/including-css-javascript/
+
 Any Code Learn = https://wordpress.stackexchange.com/questions/364110/add-dynamic-attribute-for-category-to-accordion
 				 https://codex.wordpress.org/The_Loop
 
@@ -73,6 +76,32 @@ function wpdocs_theme_name_scripts() {
 	wp_enqueue_script( 'jquery_file', get_template_directory_uri() . "/js/jquery-1.11.3.min.js", array(), '1.0.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'wpdocs_theme_name_scripts' );
+
+function wplearing_theme_scripts() {
+    wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/bootstrap/css/bootstrap.min.css', array(), '1.1', 'all');
+
+    wp_enqueue_style( 'style', get_stylesheet_uri() );
+    //Enqueue the jQuery UI theme css file from google:
+    $wp_scripts = wp_scripts();
+    
+    wp_enqueue_style(
+    'jquery-ui-theme-smoothness', //select ui theme: base...
+    sprintf(
+    'https://ajax.googleapis.com/ajax/libs/jqueryui/%s/themes/smoothness/jquery-ui.css',
+    $wp_scripts->registered['jquery-ui-core']->ver
+    )
+    );
+
+    wp_enqueue_script( 'jQuery');
+   
+    wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/bootstrap/css/bootstrap.min.js');
+    wp_enqueue_script('jquery-ui-core');
+    wp_enqueue_script('jquery-ui-datepicker');
+    wp_enqueue_script( 'custom', get_template_directory_uri() . '/assets/js/custom.js');
+   
+  }
+  add_action( 'wp_enqueue_scripts', 'wplearing_theme_scripts' );
+?>
 
 ////////////////////////////******************************//////////////////////////
 
@@ -546,6 +575,123 @@ if(has_nav_menu("header-menu"))
 	<?php } ?>
 </ul>
 
+
+//// Bootstrap Navbar
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    
+	<a class="navbar-logo" href="<?php echo get_option("siteurl"); ?>">
+	<?php 
+		the_custom_logo(); 
+	?>	
+	</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<?php
+			$locationsdetails = get_nav_menu_locations();
+			$menuID = $locationsdetails['primary'];
+		
+			$primarymenuitems =  wp_get_nav_menu_items($menuID);
+		?>
+		<ul class="navbar-nav ml-auto">
+			<?php
+				foreach($primarymenuitems as $key=>$value)
+				{?>
+
+				<li class="nav-item active">
+					<a class="nav-link" href="<?php echo $value->url; ?>"> 
+					<span><?php echo $value->title; ?> </span></a>
+				</li>
+
+				<?php } 
+			?>
+		</ul>
+	</div>
+  </div>
+</nav>
+
+
+////* Wp Nav Walker
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    
+	<a class="navbar-logo" href="<?php echo get_option("siteurl"); ?>">
+	<?php 
+		the_custom_logo(); 
+	?>	
+	</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<?php
+		wp_nav_menu( array(
+			'theme_location'  => 'primary',
+			'depth'           => 2, // 1 = no dropdowns, 2 = with dropdowns.
+			'container'       => 'div',
+			'container_class' => 'collapse navbar-collapse',
+			'container_id'    => 'navbarSupportedContent',
+			'menu_class'      => 'navbar-nav ml-auto',
+			'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
+			'walker'          => new WP_Bootstrap_Navwalker(),
+		) );
+	?>
+
+  </div>
+</nav>
+
+//////// Functions PHP
+<?php
+/*
+* This is our Function File
+*/
+
+function wplearning_theme_setup()
+{
+    add_theme_support( 'custom-logo' );
+    add_theme_support( 'title-tag' );
+    add_theme_support( 'post-thumbnails' );
+    add_theme_support( 'automatic-feed-links' );
+
+    register_nav_menus( array(
+        'primary'   => __( 'Primary Menu' ),
+        'secondary' => __( 'Secondary Menu')
+    ) );
+}
+add_action( 'after_setup_theme', 'register_navwalker' );
+
+function register_navwalker(){
+    require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
+}
+add_action( 'after_setup_theme', 'wplearning_theme_setup' );
+
+function wplearing_theme_scripts() {
+    wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/bootstrap/css/bootstrap.min.css', array(), '1.1', 'all');
+
+    wp_enqueue_style( 'style', get_stylesheet_uri() );
+    //Enqueue the jQuery UI theme css file from google:
+    $wp_scripts = wp_scripts();
+    
+    wp_enqueue_style(
+    'jquery-ui-theme-smoothness', //select ui theme: base...
+    sprintf(
+    'https://ajax.googleapis.com/ajax/libs/jqueryui/%s/themes/smoothness/jquery-ui.css',
+    $wp_scripts->registered['jquery-ui-core']->ver
+    )
+    );
+
+    wp_enqueue_script( 'jQuery');
+    wp_enqueue_script('jquery-ui-core');
+    wp_enqueue_script('jquery-ui-datepicker');
+    wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/bootstrap/js/bootstrap.min.js');
+    wp_enqueue_script( 'custom', get_template_directory_uri() . '/assets/js/custom.js');
+   
+  }
+  add_action( 'wp_enqueue_scripts', 'wplearing_theme_scripts' );
+?>
+
 //////////////////////////***************************///////////////////
 
 9) Archive Page
@@ -662,6 +808,46 @@ Link:- https://codex.wordpress.org/Plugin_API/Action_Reference/customize_registe
 
 function themename_customize_register($wp_customize)
 {
+	
+	<style>
+		.navbar{
+			background-color: <?php echo get_theme_mod('owt_text_Setting');?> !important
+		}
+
+		.navbar-light .navbar-nav .nav-link 
+		{
+			color: <?php echo get_theme_mod('owt_text_Setting1');?>;
+		}
+	</style>
+
+	// Do stuff with $wp_customize, the WP_Customize_Manager object.
+    $wp_customize->add_section('news_ection', array(
+		'title'    => "Background Color Navbar",
+		'description' => '',
+		'priority' => 10,
+    ));
+
+    //  =============================
+    //  = Color Picker              =
+    //  =============================
+    $wp_customize->add_setting('owt_text_Setting', array(
+        'default'           => 'red',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'capability'        => 'edit_theme_options',
+        'transport'    => 'refresh',
+        'type'           => 'theme_mod',
+ 
+    ));
+ 
+    $wp_customize->add_control( 'owt_text_Setting', array(
+        'label'    => 'Color Of Navigation',
+        'section'  => 'news_ection',
+        'type'     => 'color'
+    ));
+
+
+	//////////// ********* ///////////
+
 	$wp_customize->add_section('owt_main_Section', array(
 		'title'    => "Online Lucky",
 		'description' => '',
@@ -722,6 +908,33 @@ add_action('customize_register', 'themename_customize_register');
 	&copy; <?php echo get_option('owt_text_Setting'); ?> 
 	<a href="<?php echo get_option("owt_footer_pages_control"); ?>"><?php echo get_option('owt_link_Setting'); ?></a>.
 </div>
+
+ <?php $banner_status = get_theme_mod('radio_custom','yes'); ?>
+
+<?php if($banner_status == "yes"): ?>
+    <?php $url = wp_get_attachment_url( get_post_thumbnail_id($post->ID), 'full' ); ?>
+    <img src="<?php echo $url ?>" />
+<?php endif; ?>
+
+  //  =============================
+    //  = Radio Input               =
+    //  =============================
+    $wp_customize->add_setting('radio_custom', array(
+        'default'        => 'yes',
+        'capability'     => 'edit_theme_options',
+        'type'           => 'theme_mod',
+    ));
+ 
+    $wp_customize->add_control('radio_custom', array(
+        'label'      => "Yes Or No",
+        'section'    => 'news_ection',
+        'type'       => 'radio',
+        'choices'    => array(
+            'yes' => 'Yes',
+            'no' => 'No',
+        ),
+    ));
+
 
 //////////////////////////***************************///////////////////
 
@@ -832,3 +1045,31 @@ $('#accordion').on('show.bs.collapse', function () {
 	  
    
    
+
+$(document).ready(function(){
+
+    $(".filter-button").click(function(){
+        var value = $(this).attr('data-filter');
+        
+        if(value == "all")
+        {
+            //$('.filter').removeClass('hidden');
+            $('.filter').show('1000');
+        }
+        else
+        {
+//            $('.filter[filter-item="'+value+'"]').removeClass('hidden');
+//            $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
+            $(".filter").not('.'+value).hide('3000');
+            $('.filter').filter('.'+value).show('3000');
+            
+        }
+    });
+    
+    if ($(".filter-button").removeClass("active")) {
+$(this).removeClass("active");
+}
+$(this).addClass("active");
+
+});
+ 
