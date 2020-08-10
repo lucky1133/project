@@ -1,3 +1,34 @@
+TailWind Css
+First Step :-  npm install postcss-cli tailwindcss autoprefixer --save-dev
+Second Step :- npx tailwind init
+
+3rd:- Create postcss.config.js
+
+const plugins = [require("tailwindcss"), require("autoprefixer")];
+module.exports = {
+    plugins : plugins
+}
+
+4th:=
+Package.json
+"scripts": {
+    "start": "npm run tailwindcss && react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "tailwindcss" : "postcss tailwind.css -o public/app.css"
+  },
+
+https://tailwindcss.com/
+https://www.creative-tim.com/learning-lab/tailwind-starter-kit/documentation/react/modals/regular
+https://www.tailwindtoolbox.com/components/modal
+
+Babel Javascript
+html css Support
+Javascript Es6 code snippets
+Prettier code Formater
+vscode
+
 Ajax Request :-
 1) GET (Read) = Content Recieve Krna From User
 2) POST (Create) = Value Create Krna
