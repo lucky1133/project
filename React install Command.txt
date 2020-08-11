@@ -25,6 +25,8 @@ https://www.tailwindtoolbox.com/components/modal
 https://reactjsexample.com/tag/sidebar/
 https://www.npmjs.com/package/react-google-charts
 
+https://mertjf.github.io/tailblocks/
+
 Babel Javascript
 html css Support
 Javascript Es6 code snippets
