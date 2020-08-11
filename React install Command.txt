@@ -23,6 +23,7 @@ https://tailwindcss.com/
 https://www.creative-tim.com/learning-lab/tailwind-starter-kit/documentation/react/modals/regular
 https://www.tailwindtoolbox.com/components/modal
 https://reactjsexample.com/tag/sidebar/
+https://www.npmjs.com/package/react-google-charts
 
 Babel Javascript
 html css Support
