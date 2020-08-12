@@ -30,6 +30,8 @@ http://react-datatable.in/loader.html
 
 https://mertjf.github.io/tailblocks/
 
+https://tailwindui.com/components/
+
 Babel Javascript
 html css Support
 Javascript Es6 code snippets
