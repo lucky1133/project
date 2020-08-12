@@ -32,6 +32,8 @@ https://mertjf.github.io/tailblocks/
 
 https://tailwindui.com/components/
 
+https://tailwind.build/
+
 Babel Javascript
 html css Support
 Javascript Es6 code snippets
