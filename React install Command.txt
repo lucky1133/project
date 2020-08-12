@@ -398,6 +398,19 @@ const Demo = () => {
         $('#sticky').removeClass('sticky');
       }
   })
+  $(document).ready(function(){
+
+   
+});
+const dropm = () => {
+    $("#dropdown").find(".dropdown-menu").stop().slideToggle("fast");
+}
+$(document).on("click", function(event){
+    var $trigger = $(".dropdown");
+    if($trigger !== event.target && !$trigger.has(event.target).length){
+        $(".dropdown-menu").slideUp("fast");
+    }            
+});
 
   return (
     <>
@@ -405,8 +418,18 @@ const Demo = () => {
         <div className="text-white bg-black" id="sidebar-wrapper">
           asdasasd
         </div>
-
+       
         <div id="page-content-wrapper" style={{height :'1100px'}}>
+        <ul>
+            <li class="dropdown" id="dropdown" onClick={()=> dropm()} >
+                <a href="#">Products &#9662;</a>
+                <ul className="dropdown-menu">
+                    <li><a href="#">Laptops</a></li>
+                    <li><a href="#">Monitors</a></li>
+                    <li><a href="#">Printers</a></li>
+                </ul>
+            </li>
+        </ul>
           <div class="flex flex-wrap mb-4">
             <div class="lg:w-1/3 w-full sm:w-full md:w-full bg-gray-400 h-12">
               asdsad
