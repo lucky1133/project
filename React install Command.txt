@@ -312,3 +312,152 @@ class Form extends React.Component
 }
 
 export default Form;
+
+
+
+SideBar:-
+#sidebar-wrapper
+{
+  width: 280px;
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (max-width: 768px) {
+  #sidebar-wrapper {
+    margin-right: -17.50rem;
+    order: 2;
+    margin-top: 48px;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  #sidebar-wrapper {
+    margin-left: -17.50rem;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+  }
+}
+
+html
+<div className="flex" id="wrapper">
+        <div className="text-white bg-black" id="sidebar-wrapper">
+          asdasasd
+        </div>
+
+        <div id="page-content-wrapper" className="w-12/12">
+          <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 mb-3 bg-pink-500 navbar-expand-lg">
+            <div className="container flex flex-wrap items-center justify-between px-4 mx-auto">
+              <div className="relative flex justify-between w-full xs:hidden lg:w-auto lg:static lg:block lg:justify-start">
+                <button
+                  className="btn btn-primary"
+                  id="menu-toggle"
+                  onClick={() => menuToggle()}
+                >
+                  Toggle Menu
+                </button>
+                <button
+                  className="block px-3 py-1 text-xl leading-none text-white bg-transparent border border-transparent border-solid rounded outline-none cursor-pointer lg:hidden focus:outline-none"
+                  type="button"
+                  onClick={() => menuToggle()}
+                >
+                  <i className="fas fa-bars"></i>
+                </button>
+              </div>
+              <div
+                className={
+                  "lg:flex flex-grow items-center" +
+                  (navbarOpen ? " flex" : " hidden")
+                }
+                id="example-navbar-danger"
+              >
+                <ul className="flex flex-col list-none lg:flex-row lg:ml-auto">
+                  <li className="nav-item">
+                    <a
+                      className="flex items-center px-3 py-2 text-xs font-bold leading-snug text-white uppercase hover:opacity-75"
+                      href="#pablo"
+                    >
+                      <i className="text-lg text-white opacity-75 fab fa-facebook-square leading-lg"></i>
+                      <span className="ml-2">Share</span>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a
+                      className="flex items-center px-3 py-2 text-xs font-bold leading-snug text-white uppercase hover:opacity-75"
+                      href="#pablo"
+                    >
+                      <i className="text-lg text-white opacity-75 fab fa-twitter leading-lg"></i>
+                      <span className="ml-2">Tweet</span>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a
+                      className="flex items-center px-3 py-2 text-xs font-bold leading-snug text-white uppercase hover:opacity-75"
+                      href="#pablo"
+                    >
+                      <i className="text-lg text-white opacity-75 fab fa-pinterest leading-lg"></i>
+                      <span className="ml-2">Pin</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+          <div className="container-fluid">
+            <h1 className="mt-4">Simple Sidebar</h1>
+            <p>
+              The starting state of the menu will appear collapsed on smaller
+              screens, and will appear non-collapsed on larger screens. When
+              toggled using the button below, the menu will change.
+            </p>
+            <p>
+              Make sure to keep all page content within the{" "}
+              <code>#page-content-wrapper</code>. The top navbar is optional,
+              and just for demonstration. Just create an element with the{" "}
+              <code>#menu-toggle</code> ID which will toggle the menu when
+              clicked.
+            </p>
+          </div>
+        </div>
+      </div>
