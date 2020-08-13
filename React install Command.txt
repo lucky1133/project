@@ -584,3 +584,11 @@ class Demo extends React.Component {
 }
 
 export default Demo;
+
+.collapsible {
+  display: none;
+}
+
+.collapsible.open {
+  display: block;
+}
