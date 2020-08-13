@@ -23,7 +23,7 @@ https://tailwindcss.com/
 https://www.creative-tim.com/learning-lab/tailwind-starter-kit/documentation/react/modals/regular
 https://www.tailwindtoolbox.com/components/modal
 https://reactjsexample.com/tag/sidebar/
-
+https://react-accessible-accordion.springload.co.nz/
 https://www.npmjs.com/package/react-google-charts
 
 http://react-datatable.in/loader.html
