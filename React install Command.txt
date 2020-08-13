@@ -592,3 +592,22 @@ export default Demo;
 .collapsible.open {
   display: block;
 }
+
+/*********/
+Active Class Router
+ <Router>
+    <Demo />
+    <Switch>
+      <Route path ="/demo1" component={Demo1}/>
+      <Route path ="/demo2" component={Demo2}/>
+      <Route path ="/demo3" component={Demo3}/>
+    </Switch>
+</Router>
+<nav className="navbar navbar-default navbar-static-top">
+  <ul className="nav nav-pills">
+    {/* Check the Css section for the selector */}
+    <li><NavLink to="/demo1" activeClassName="active">Part B</NavLink></li>
+    <li><NavLink to="/demo2" activeClassName="active">Part A</NavLink></li>
+    <li><NavLink to="/demo3" activeClassName="active">Part B</NavLink></li>
+  </ul>
+</nav>
