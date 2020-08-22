@@ -1,7 +1,18 @@
  https://codepen.io/mrrudrud/pen/BOvrQO
  https://www.npmjs.com/package/react-collapsible
  
- getBrandText = path => {
+//// If u want to use Git Bash in Vs Terminal
+
+// Git Bash
+"terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
+// In Vas Setting.Json
+
+https://www.youtube.com/watch?v=U_PgSq3SLvQ
+https://code.visualstudio.com/docs/editor/integrated-terminal
+
+////////////////////////////////////////
+
+getBrandText = path => {
     for (let i = 0; i < routes.length; i++) {
       if (
         this.props.location.pathname.indexOf(
