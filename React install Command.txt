@@ -107,7 +107,7 @@ navigation components
 to navigate to a client-generated view in your web app
 – Can also pass along optional parameters
 
-1) npm insatll react-router-dom
+1) npm install react-router-dom
 
 /***** React Install *****/
 
