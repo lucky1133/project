@@ -26,3 +26,22 @@ http://www.tutorialspark.com/twitterBootstrap/TwitterBootstrap_Collapsible_Accor
 
 Change Image On Hover From Data Attribute
 https://codepen.io/jasonnarciso/pen/ojewea
+
+Pure Javascript Accordion
+https://codepen.io/sureshrkm/pen/ZbzBpr
+i;
+  
+var accItem = document.getElementsByClassName('accordionItem');
+var accHD = document.getElementsByClassName('accordionItemHeading');
+for (this.i = 0; this.i < accHD.length; this.i++) {
+    accHD[this.i].addEventListener('click', toggleItem, false);
+}
+function toggleItem() {
+    var itemClass = this.parentNode.className;
+    for (this.i = 0; this.i < accItem.length; this.i++) {
+        accItem[this.i].className = 'accordionItem close';
+    }
+    if (itemClass == 'accordionItem close') {
+        this.parentNode.className = 'accordionItem open';
+    }
+}
