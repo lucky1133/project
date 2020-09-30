@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Client Portal</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+  </head>
+  <body>
+
+
+    <section class="topheader">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <a href="index.html">
+              <div class="logo d-flex align-items-center">
+     
+                   <img class="planet-1" src="https://mantis-themes.club/demo/cando/images/index/hero/planet1.png" alt="Planet Cando">
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <div class="banimg bghome text-center">
+      <svg
+        width="317"
+        height="572"
+        class="ellieps1"
+        viewBox="0 0 317 572"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M571.5 286C571.5 443.677 443.677 571.5 286 571.5C128.323 571.5 0.5 443.677 0.5 286C0.5 128.323 128.323 0.5 286 0.5C443.677 0.5 571.5 128.323 571.5 286Z"
+          fill="#176287"
+          fill-opacity="0.1"
+        />
+      </svg>
+      <svg
+        width="340"
+        height="340"
+        class="ellieps2 newplanet"
+        viewBox="0 0 340 340"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="170" cy="170" r="170" fill="#BC3A80" fill-opacity="0.1" />
+      </svg>
+    </div>
+
+    <!-- jQuery Javascript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/anime.min.js"></script>
+    <script>
+      var planet1 = anime({
+        targets: '.planet-1',
+        rotate: 360,
+        direction: 'infinite',
+        duration: 2000,
+        loop: true,
+        easing: 'linear'
+      });
+
+      var newplanet = anime({
+        targets: '.newplanet',
+        translateX: 100,
+        direction: 'alternate',
+        duration: 2000,
+        loop: true,
+        easing: 'linear'
+      });
+
+
+      var newplanet = anime({
+        targets: '.ellieps1',
+        translateX: 100,
+        translateY: 100,
+        direction: 'alternate',
+        duration: 2000,
+        loop: true,
+        easing: 'linear'
+      });
+
+    </script>
+  </body>
+</html>
