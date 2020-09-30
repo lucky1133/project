@@ -7,6 +7,28 @@
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
     />
+    <style>
+      nav.navbar-light ul.navbar-nav li.dropdown:hover .dropdown-menu {
+  display: block;
+  top: 100%;
+  animation: menuanim ease-in-out 0.4s;
+}
+
+.megamenu-li {
+  position: static;
+}
+
+@keyframes menuanim {
+  0% {
+    top: 110%;
+    opacity: 0;
+  }
+  100% {
+    top: 100%;
+    opacity: 1;
+  }
+}
+    </style>
   </head>
   <body>
   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="900px" height="900px" viewBox="0 0 900 900" enable-background="new 0 0 900 900" xml:space="preserve">
