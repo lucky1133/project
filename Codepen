@@ -1,3 +1,13 @@
+// boostrap override for centered modals
+.modal-open .modal {
+  display: flex !important;
+  align-items: center !important;
+  .modal-dialog {
+    flex-grow: 1;
+  }
+}
+
+
 jQuery Plugin For Vertical Fullpage Scrolling - Smart Scroll
 https://www.jqueryscript.net/animation/jQuery-Plugin-For-Vertical-Fullpage-Scrolling-Smart-Scroll.html
 
