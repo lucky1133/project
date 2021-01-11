@@ -15,6 +15,10 @@ https://codepen.io/svdovichenko/pen/wKQKOv
    min-height: 100vh;
 }
 
+Open Powersell The Use This Command
+if Showing this message:- https://prnt.sc/wky9vy
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted -Force;
+
 jQuery Plugin For Vertical Fullpage Scrolling - Smart Scroll
 https://www.jqueryscript.net/animation/jQuery-Plugin-For-Vertical-Fullpage-Scrolling-Smart-Scroll.html
 
