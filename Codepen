@@ -7,6 +7,13 @@
   }
 }
 
+Center Div Form
+https://codepen.io/svdovichenko/pen/wKQKOv
+.vertical-center {
+   display: flex;
+   align-items: center;
+   min-height: 100vh;
+}
 
 jQuery Plugin For Vertical Fullpage Scrolling - Smart Scroll
 https://www.jqueryscript.net/animation/jQuery-Plugin-For-Vertical-Fullpage-Scrolling-Smart-Scroll.html
