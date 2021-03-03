@@ -1,3 +1,6 @@
+If Change Link Scroll to top on Route Change.
+RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})
+
 /////////////// Gird View List View Code=
 <div id="myBtnContainer">
     <button class="btnr" onclick="listView()"><i class="fa fa-bars"></i> List</button> 
