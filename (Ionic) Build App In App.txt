@@ -1,0 +1,57 @@
+SDK Window Licence Access
+%ANDROID_HOME%/tools/bin/sdkmanager --licenses
+
+Step 1: Download android studio and SDK from https://developer.android.com/studio#downloads and install it and save SDK in a specific folder or install it as by default.
+
+Step 2: go to advance system settings (start-> Control Panel-> System and Security -> System -> advance system settings) and click on environment variables button.
+https://prnt.sc/118970z
+https://prnt.sc/11897f3
+
+
+In system variables click on New button and another window will open. In variable name type ANDROID_SDK_ROOT and in variable value write your SDK root path.
+
+https://prnt.sc/118981i
+
+After that select path in system variables and click on edit button, a window will popup. Click on new button and add bin path of SDK folder.
+
+Step 3:  Download Java JDK 1.8 from https://www.oracle.com/in/java/technologies/javase/javase-jdk8-downloads.html.
+
+Step 4: set java JDK path in advance system variables (as discussed above).
+
+https://prnt.sc/11898sj
+
+Step 5: Download gradle from https://gradle.org/install/. And follow the process given below.
+
+Microsoft Windows users
+
+Create a new directory C:\Gradle with File Explorer.
+
+Open a second File Explorer window and go to the directory where the Gradle distribution was downloaded. Double-click the ZIP archive to expose the content. Drag the content folder Gradle-6.5.1 to your newly created C:\Gradle folder.
+
+Add the path of the Gradle folder in environment variables.
+
+Step 6: go to your ionic project and open a terminal, run the command ionic Cordova run android to emulate the simulator.
+
+Thus we saw there are some easy steps we need to follow and we can easily open ionic project in simulator.
+
+Thanks
+
+
+Remove platform Android
+Command
+ionic cordova platform rm android
+
+Add Again
+If Showing This TYpe of Error 
+Source path does not exist: resources/android/icon/drawable-hdpi-icon.png
+
+Then Use Command
+ionic integrations enable cordova --add
+
+Add/Remove
+
+ionic cordova platform rm android
+ionic cordova platform add android
+and ionic cordova run android --device
+
+
