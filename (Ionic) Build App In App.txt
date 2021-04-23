@@ -1,3 +1,5 @@
+https://www.youtube.com/watch?v=iRqX15Ts76o&ab_channel=wapinstitute
+
 SDK Window Licence Access
 %ANDROID_HOME%/tools/bin/sdkmanager --licenses
 
