@@ -1,3 +1,16 @@
+Height 100% For All Devices
+.banner
+{
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  max-height: 800px;
+  min-height: 640px;
+  display: block;
+}
+
 https://www.youtube.com/watch?v=iRqX15Ts76o&ab_channel=wapinstitute
 
 SDK Window Licence Access
