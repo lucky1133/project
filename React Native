@@ -1,0 +1,43 @@
+BottomTab.Navigator =>
+
+screenOptions={{
+	tabBarStyle: {
+		backgroundColor:"#fff",
+	},
+}}
+
+
+/*****************************/
+
+Stack.Screen =>
+
+headerStyle: {
+	backgroundColor:"#fff"
+},
+
+
+Components => 
+	
+	Themed.tsx =>
+
+export function Text(props: TextProps) {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  // const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
+
+  return <DefaultText style={[{ color:"#fff" }, style]} {...otherProps} />;
+}
+
+export function View(props: ViewProps) {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  // const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
+
+  return <DefaultView style={[{ backgroundColor:"#fff" }, style]} {...otherProps} />;
+}
+
+/*****************************/
+
+App.json
+
+Android = IOS
+
+"userInterfaceStyle": "fff",
