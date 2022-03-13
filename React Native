@@ -11,10 +11,14 @@ screenOptions={{
 
 Stack.Screen =>
 
-headerStyle: {
+options={{
+    headerStyle: {
 	backgroundColor:"#fff"
-},
+    },
+    headerTintColor:"#000",
+}}
 
+/*****************************/
 
 Components => 
 	
