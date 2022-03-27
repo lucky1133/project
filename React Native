@@ -1,47 +1,9 @@
-BottomTab.Navigator =>
+If You Want To Make Dark Mode
 
-screenOptions={{
-	tabBarStyle: {
-		backgroundColor:"#fff",
-	},
-}}
+import { useColorScheme } from "react-native";
 
+const colorScheme = useColorScheme();
+const isDark = colorScheme === 'dark';
 
-/*****************************/
-
-Stack.Screen =>
-
-options={{
-    headerStyle: {
-	backgroundColor:"#fff"
-    },
-    headerTintColor:"#000",
-}}
-
-/*****************************/
-
-Components => 
-	
-	Themed.tsx =>
-
-export function Text(props: TextProps) {
-  const { style, lightColor, darkColor, ...otherProps } = props;
-  // const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
-
-  return <DefaultText style={[{ color:"#fff" }, style]} {...otherProps} />;
-}
-
-export function View(props: ViewProps) {
-  const { style, lightColor, darkColor, ...otherProps } = props;
-  // const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
-
-  return <DefaultView style={[{ backgroundColor:"#fff" }, style]} {...otherProps} />;
-}
-
-/*****************************/
-
-App.json
-
-Android = IOS
-
-"userInterfaceStyle": "fff",
+/*****************/
+backgroundColor:isDark ? '#15263A' : '#fff',
